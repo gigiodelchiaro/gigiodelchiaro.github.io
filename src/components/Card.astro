@@ -1,0 +1,22 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+  url?: string;
+  color?: string;
+}
+
+const { title, subtitle, url, color = 'var(--catholic-gold)' } = Astro.props;
+---
+
+<div class="border border-[#333] p-6 hover:border-[var(--catholic-gold)] transition-colors group">
+  {url ? (
+    <a href={url} target="_blank" rel="noopener noreferrer" class="text-xl font-bold mb-3 block underline decoration-dotted group-hover:text-[var(--terminal-green)] transition-colors" style={`color: ${color}`}>
+      ❯ {title}
+    </a>
+  ) : (
+    <h3 class="text-xl font-bold mb-3" style={`color: ${color}`}>{title}</h3>
+  )}
+  {subtitle && <p class="italic opacity-80">"{subtitle}"</p>}
+  <slot />
+</div>

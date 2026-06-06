@@ -1,0 +1,140 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Section from '../../components/Section.astro';
+import Card from '../../components/Card.astro';
+import Block from '../../components/Block.astro';
+import Key from '../../components/Key.astro';
+import Navigation from '../../components/Navigation.astro';
+
+const catholicLogo = `        _|_
+         |
+    _____|_____
+         |
+         |
+         |
+         |
+         |
+         |
+         |`;
+
+const catholicFetch = {
+  user: "gigio@dev",
+  status: "Servo de Cristo",
+  church: "Una, Santa, Católica e Apostólica",
+  pope: "Leão XIV",
+  os: "Fedora Linux",
+  languages: "TypeScript, Python, C",
+  mission: "Ad Maiorem Dei Gloriam",
+};
+
+const aboutContent = `Sou um católico devoto. Minha vida e trabalho são dedicados à busca da Verdade, Beleza e Bondade. Sei uma coisa ou outra em TypeScript, Python e C.`;
+
+const favoriteSaints = [
+  { name: "Padre Pio", quote: "Reze, espere e não se preocupe. A preocupação é inútil. Deus é misericordioso e ouvirá sua oração." },
+  { name: "Santa Teresinha do Menino Jesus", quote: "Não perca nenhuma oportunidade de fazer algum pequeno sacrifício, aqui por um olhar sorridente, ali por uma palavra gentil." },
+  { name: "São João Paulo II", quote: "Não tenhais medo! Abri de par em par as portas a Cristo!" },
+];
+
+const projects = [
+  { name: "separador-silabas", url: "https://github.com/gigiodelchiaro/separador-silabas", description: "Um separador de sílabas e identificador de sílaba tônica para a língua portuguesa seguindo as regras gramaticais." },
+  { name: "Augustinus", url: "https://github.com/AISCGre-BR/Augustinus", description: "Um gerador e editor de partituras de canto gregoriano em formato GABC, construído com TypeScript e Bun." },
+];
+
+const chantContent = {
+  title: "Canto Gregoriano",
+  description: "O canto próprio da Liturgia Romana, uma forma de oração cantada que une a alma ao divino através de sua modalidade e ritmo únicos.",
+  aiscgre: "Sou aluno da Associazione Internazionale Studi di Canto Gregoriano (AISCGre), dedicada ao estudo semiológico e preservação desta tradição sagrada."
+};
+
+const sections = [
+  { id: "about", label: "/sobre", color: "var(--terminal-green)" },
+  { id: "saints", label: "/santos", color: "var(--catholic-gold)" },
+  { id: "chant", label: "/canto", color: "var(--fedora-blue)" },
+  { id: "pope", label: "/magisterio", color: "var(--fedora-blue)" },
+  { id: "projects", label: "/projetos", color: "var(--terminal-green)" },
+];
+---
+
+<Layout title="gigio.dev">
+	<main class="min-h-screen p-6 md:p-12 max-w-5xl mx-auto font-mono selection:bg-[var(--catholic-gold)] selection:text-black">
+    
+    <Navigation currentLang="pt-br" sections={sections} />
+
+    <!-- Home / Fetch Section -->
+    <section id="home" class="mb-16">
+      <div class="flex flex-col lg:flex-row gap-12 items-start">
+        <pre class="text-[var(--fedora-blue)] font-bold leading-tight text-xs md:text-sm select-none">{catholicLogo}</pre>
+        <div class="flex flex-col">
+          <h1 class="text-3xl font-bold text-[var(--catholic-gold)] mb-4">{catholicFetch.user}</h1>
+          <div class="space-y-2 text-lg">
+            <Key label="Status">{catholicFetch.status}</Key>
+            <Key label="Igreja">{catholicFetch.church}</Key>
+            <Key label="Papa" color="var(--catholic-gold)">{catholicFetch.pope}</Key>
+            <Key label="OS">{catholicFetch.os}</Key>
+            <Key label="Linguagens" color="var(--terminal-green)">{catholicFetch.languages}</Key>
+            <Key label="Missão" color="var(--terminal-green)">{catholicFetch.mission}</Key>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <Section title="sobre" id="about" color="var(--terminal-green)">
+      <p class="text-xl leading-relaxed max-w-3xl">{aboutContent}</p>
+    </Section>
+
+    <!-- Saints Section -->
+    <Section title="santos" id="saints" color="var(--catholic-gold)">
+      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {favoriteSaints.map(saint => (
+          <Card title={saint.name} subtitle={saint.quote} color="var(--catholic-gold)" />
+        ))}
+      </div>
+    </Section>
+
+    <!-- Gregorian Chant Section -->
+    <Section title="musica-sacra" id="chant" color="var(--fedora-blue)">
+      <Block color="var(--catholic-gold)">
+        <h3 class="text-xl font-bold text-[var(--catholic-gold)] mb-4">{chantContent.title}</h3>
+        <p class="text-xl leading-relaxed mb-6">{chantContent.description}</p>
+        <div class="flex items-start gap-4">
+          <span class="text-[var(--terminal-green)] font-bold">AISCGre:</span>
+          <p class="opacity-80 italic">{chantContent.aiscgre}</p>
+        </div>
+      </Block>
+    </Section>
+
+    <!-- Pope Section -->
+    <Section title="magisterio" id="pope" color="var(--fedora-blue)">
+      <Block color="var(--fedora-blue)">
+        <p class="text-xl italic">"O mundo digital pode ser um ambiente rico em humanidade: uma rede não de fios, mas de pessoas."</p>
+        <p class="mt-4 text-sm opacity-60">— Papa Leão XIV, Discurso aos Evangelizadores Digitais</p>
+      </Block>
+    </Section>
+
+    <!-- Projects Section -->
+    <Section title="projetos" id="projects" color="var(--terminal-green)">
+      <div class="grid gap-6">
+        {projects.map(p => (
+          <Card title={p.name} url={p.url} color="var(--fedora-blue)">
+            <p class="mt-2 text-lg opacity-80">{p.description}</p>
+          </Card>
+        ))}
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="mt-24 pt-8 border-t border-[#333] text-sm opacity-40 flex justify-between items-center">
+      <p>Laudetur Iesus Christus</p>
+      <p>Agora e para sempre</p>
+    </footer>
+
+	</main>
+</Layout>
+
+<style>
+  html {
+    scroll-behavior: smooth;
+    background-color: #000;
+  }
+</style>

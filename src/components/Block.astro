@@ -1,0 +1,11 @@
+---
+interface Props {
+  color?: string; // fedora-blue or catholic-gold
+}
+
+const { color = 'var(--fedora-blue)' } = Astro.props;
+---
+
+<div class="bg-[#1a1a1a] p-8 border-l-4" style={`border-color: ${color}`}>
+  <slot />
+</div>

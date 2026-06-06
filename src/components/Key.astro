@@ -1,0 +1,10 @@
+---
+interface Props {
+  label: string;
+  color?: string;
+}
+
+const { label, color = 'var(--fedora-blue)' } = Astro.props;
+---
+
+<p><span class="font-bold" style={`color: ${color}`}>{label}:</span> <slot /></p>

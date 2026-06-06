@@ -1,0 +1,14 @@
+---
+interface Props {
+  title: string;
+  id: string;
+  color?: string; // fedora-blue, terminal-green, catholic-gold
+}
+
+const { title, id, color = 'var(--terminal-green)' } = Astro.props;
+---
+
+<section id={id} class="mb-16">
+  <h2 class="text-2xl font-bold mb-6 underline decoration-dashed" style={`color: ${color}`}>/{title}</h2>
+  <slot />
+</section>

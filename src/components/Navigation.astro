@@ -1,0 +1,19 @@
+---
+interface Props {
+  currentLang: 'en-us' | 'pt-br';
+  sections: { id: string; label: string; color: string }[];
+}
+
+const { currentLang, sections } = Astro.props;
+---
+
+<nav class="mb-12 flex flex-wrap gap-6 text-sm border-b border-[#333] pb-4 items-center">
+  {sections.map(item => (
+    <a href={`#${item.id}`} class="hover:underline" style={`color: ${item.color}`}>{item.label}</a>
+  ))}
+  
+  <div class="ml-auto flex gap-4 border-l border-[#333] pl-6">
+    <a href="/en-us/" class={`hover:underline ${currentLang === 'en-us' ? 'font-bold underline' : 'opacity-50'}`} style="color: var(--fedora-blue)">EN-US</a>
+    <a href="/pt-br/" class={`hover:underline ${currentLang === 'pt-br' ? 'font-bold underline' : 'opacity-50'}`} style="color: var(--catholic-gold)">PT-BR</a>
+  </div>
+</nav>
