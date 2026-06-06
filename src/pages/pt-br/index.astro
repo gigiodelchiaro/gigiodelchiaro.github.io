@@ -5,20 +5,10 @@ import Card from '../../components/Card.astro';
 import Block from '../../components/Block.astro';
 import Key from '../../components/Key.astro';
 import Navigation from '../../components/Navigation.astro';
-
-const catholicLogo = `        _|_
-         |
-    _____|_____
-         |
-         |
-         |
-         |
-         |
-         |
-         |`;
+import Logo from '../../components/Logo.astro';
 
 const catholicFetch = {
-  user: "gigio@dev",
+  user: "gigio.dev",
   status: "Servo de Cristo",
   church: "Una, Santa, Católica e Apostólica",
   pope: "Leão XIV",
@@ -63,7 +53,7 @@ const sections = [
     <!-- Home / Fetch Section -->
     <section id="home" class="mb-16">
       <div class="flex flex-col lg:flex-row gap-12 items-start">
-        <pre class="text-[var(--fedora-blue)] font-bold leading-tight text-xs md:text-sm select-none">{catholicLogo}</pre>
+        <Logo />
         <div class="flex flex-col">
           <h1 class="text-3xl font-bold text-[var(--catholic-gold)] mb-4">{catholicFetch.user}</h1>
           <div class="space-y-2 text-lg">
